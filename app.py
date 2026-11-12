@@ -83,7 +83,7 @@ if modo_vista == "Lado a Lado (Comparativa)":
     with col2:
         st.markdown("**Seaborn**")
         fig, ax = plt.subplots(figsize=(6, 3.5))
-        sns.barplot(data=df_barras, x='Categoría', y='Promedio', palette='Greens_d', ax=ax)
+        sns.barplot(data=df_barras, x='Categoría', y='Promedio', hue='Categoría', palette='Greens_d', legend=False, ax=ax)
         ax.set_title('Ventas por Categoría')
         st.pyplot(fig)
         plt.close(fig)
@@ -134,7 +134,7 @@ if modo_vista == "Lado a Lado (Comparativa)":
         st.markdown("**Matplotlib**")
         datos_box = [df_box[df_box['Departamento'] == d]['Sueldo_k'] for d in df_box['Departamento'].unique()]
         fig, ax = plt.subplots(figsize=(6, 3.5))
-        ax.boxplot(datos_box, labels=df_box['Departamento'].unique(), patch_artist=True,
+        ax.boxplot(datos_box, tick_labels=df_box['Departamento'].unique(), patch_artist=True,
                    boxprops=dict(facecolor='#d62728', alpha=0.7))
         ax.set_title('Sueldos por Departamento')
         st.pyplot(fig)
@@ -142,7 +142,7 @@ if modo_vista == "Lado a Lado (Comparativa)":
     with col2:
         st.markdown("**Seaborn**")
         fig, ax = plt.subplots(figsize=(6, 3.5))
-        sns.boxplot(data=df_box, x='Departamento', y='Sueldo_k', palette='Reds', ax=ax)
+        sns.boxplot(data=df_box, x='Departamento', y='Sueldo_k', hue='Departamento', palette='Reds', legend=False, ax=ax)
         ax.set_title('Sueldos por Departamento')
         st.pyplot(fig)
         plt.close(fig)
@@ -160,7 +160,7 @@ else:
     with tab2:
         st.subheader("Gráfico de Barras")
         fig, ax = plt.subplots(figsize=(8, 4))
-        sns.barplot(data=df_barras, x='Categoría', y='Promedio', palette='Greens_d', ax=ax)
+        sns.barplot(data=df_barras, x='Categoría', y='Promedio', hue='Categoría', palette='Greens_d', legend=False, ax=ax)
         st.pyplot(fig)
         plt.close(fig)
         
@@ -181,6 +181,6 @@ else:
     with tab5:
         st.subheader("Diagrama de Caja")
         fig, ax = plt.subplots(figsize=(8, 4))
-        sns.boxplot(data=df_box, x='Departamento', y='Sueldo_k', palette='Reds', ax=ax)
+        sns.boxplot(data=df_box, x='Departamento', y='Sueldo_k', hue='Departamento', palette='Reds', legend=False, ax=ax)
         st.pyplot(fig)
         plt.close(fig)
